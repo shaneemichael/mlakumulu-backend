@@ -3,7 +3,12 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as crypto from 'crypto';
-global.crypto = crypto.webcrypto as Crypto;
+
+// Instead of overriding global.crypto, add only the missing methods
+// that @nestjs/typeorm might be looking for
+if (!global.crypto.randomUUID) {
+  global.crypto.randomUUID = crypto.randomUUID;
+}
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
