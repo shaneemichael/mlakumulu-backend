@@ -1,4 +1,10 @@
-import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Matches,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateTouristDto {
@@ -20,10 +26,11 @@ export class CreateTouristDto {
   @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
+  @Matches(/^[0-9+\-() ]*$/, { message: 'Phone number is not valid' })
   phoneNumber?: string;
 
   @ApiProperty({ required: false })
-  @IsEmail()
+  @IsEmail({}, { message: 'Email is not valid' })
   @IsOptional()
   email?: string;
 
