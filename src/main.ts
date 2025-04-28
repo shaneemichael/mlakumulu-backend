@@ -7,6 +7,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // Set up global validation pipe
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.enableCors({
+    origin: 'https://mlakumulu-frontend-production.up.railway.app', // or your frontend URL
+    credentials: true,
+  });
   // Set up Swagger documentation
   const config = new DocumentBuilder()
     .setTitle('Mlaku-Mulu Travel Agency API')
