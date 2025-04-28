@@ -12,12 +12,12 @@ This is a backend application for the Mlaku-Mulu Travel Agency, built with NestJ
 
 ## Tech Stack
 
-- NestJS
-- TypeScript
+- Framework: NestJS
+- Language: TypeScript
 - TypeORM
-- SQLite (for simplicity, can be changed to other databases)
-- JWT for authentication
-- Swagger for API documentation
+- Database: SQLite (for simplicity, can be changed to other databases)
+- Authentication: JWT 
+- API Documentation: Swagger
 
 ## Installation
 
@@ -95,6 +95,12 @@ The application has two user roles:
 
 ## Database Schema
 
+The application uses the following entity relationships:
+
+1. **User** - Base entity for authentication
+2. **Tourist** -  Extends User, contains tourist-specific information
+3. **Travel** - Contains travel information linked to tourists
+
 ### User Entity
 - id: UUID
 - username: string (unique)
@@ -122,3 +128,11 @@ The application has two user roles:
 - touristId: UUID (foreign key to Tourist)
 - createdAt: Date
 - updatedAt: Date
+
+## Development
+To contribute to this project:
+1. Fork the repository
+2. Create your feature branch (git checkout -b feature/amazing-feature)
+3. Commit your changes (git commit -m 'Add some amazing feature')
+4. Push to the branch (git push origin feature/amazing-feature)
+5. Open a Pull Request
